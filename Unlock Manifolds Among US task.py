@@ -8,8 +8,8 @@ import random
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (100, 50)
 pygame.init()
 pygame.display.set_caption("Unlock Manifolds Among US task")
-bg = pygame.image.load('images/start.png')
-ma = pygame.image.load('images/main.png')
+bg = pygame.image.load('start.png')
+ma = pygame.image.load('main.png')
 
 
 screen_width = 1150
