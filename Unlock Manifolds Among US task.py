@@ -3,6 +3,7 @@ import os
 import pygame
 import webbrowser
 import random
+import time
 
 
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (100, 50)
@@ -14,7 +15,6 @@ ma = pygame.image.load('main.png')
 
 screen_width = 1150
 screen_height = 650
-print(screen_height,screen_width)
 win = pygame.display.set_mode((screen_width,screen_height))
 win.blit(bg, (0,0))
 
@@ -85,10 +85,10 @@ def displayMessage(message,fontSize, height,color = red):
 
 
 def unlockmenifolds():
+    start = time.time()
     win.blit(ma, (0, 0))
     mydelay(100)
     loop = True
-    print("inside")
     back = button(247, 190, 55, 55,black,blue,0)
     youtube.draw()
     back.draw()
@@ -108,7 +108,6 @@ def unlockmenifolds():
     numbers = [str(x+1) for x in range(10)]
     randnumbers =  random.sample(numbers, len(numbers))
     buttons = []
-    print(randnumbers)
     counter = 1
     reflist = []
     for i in randnumbers:
@@ -132,28 +131,28 @@ def unlockmenifolds():
                 if n.text not in reflist:
                     reflist.append(n.text)
                     if reflist == numbers[:len(reflist)]:
-                        print("same")
                         n.color1 = green
                         n.color2 = green
                         n.draw()
                         if len(reflist) == 10:
                             n.isOver(pos_in)
+                            end = time.time()
                             displayMessage("Task Complete!", 84, 100, yellow)
+                            displayMessage("Time taken = " + str(end-start) + " seconds" ,30, 160, yellow)
                             pygame.display.update()
-                            mydelay(3000)
+                            mydelay(4000)
                             loop = False
 
                     else:
                         displayMessage("Task incomplete!", 84, 100)
                         pygame.display.update()
-                        mydelay(3000)
+                        mydelay(2500)
                         loop = False
 
         back.draw()
         youtube.draw()
         pygame.display.update()
         mydelay(50)
-
 
 
 taskbutton = button(453,120,50,30,yellow,yellow,1,1)
